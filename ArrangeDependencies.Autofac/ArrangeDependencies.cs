@@ -21,7 +21,6 @@ namespace ArrangeDependencies.Autofac
         public T Resolve()
         {
             return _container.Resolve<T>();
-
         }
 
         public TInterface ResolveDependency<TInterface>()
