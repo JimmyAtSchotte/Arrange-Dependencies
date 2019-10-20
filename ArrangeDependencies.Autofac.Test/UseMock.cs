@@ -12,12 +12,12 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldResolveUsingMock()
         {
-            var arrange = ArrangeDependencies<UserService>.Config(dependencies =>
+            var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
             {
                 dependencies.UseMock<IUserRepository>(mock => Mock.Of<IUserRepository>());
             });
 
-            var userService = arrange.Resolve();
+            var userService = arrange.Resolve<IUserService>();
 
             Assert.IsInstanceOf<UserService>(userService);
         }

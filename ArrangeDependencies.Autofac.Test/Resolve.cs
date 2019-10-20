@@ -1,4 +1,5 @@
-﻿using ArrangeDependencies.Autofac.Test.Basis.Services;
+﻿using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
+using ArrangeDependencies.Autofac.Test.Basis.Services;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldAutResolveMissingDependeciesWithMocks()
         {
-            var arrange = ArrangeDependencies<UserService>.Config();
+            var arrange = ArrangeDependencies.Config<IUserService, UserService>();
 
-            var userService = arrange.Resolve();
+            var userService = arrange.Resolve<IUserService>();
 
             Assert.IsInstanceOf<UserService>(userService);
         }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ArrangeDependencies.Core.Interfaces
 {
-    public interface IArrangeBuilder
+    public interface IArrangeBuilder<TContainerBuilder>
     {
+
     }
 }

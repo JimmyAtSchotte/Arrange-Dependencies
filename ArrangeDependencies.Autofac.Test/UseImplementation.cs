@@ -12,12 +12,12 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldResolveUseImplementation()
         {
-            var arrange = ArrangeDependencies<UserService>.Config(dependencies =>
+            var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
             {
-                dependencies.UseImplementation((c) => c.RegisterType<UserService>().As<IUserService>());
+                dependencies.UseImplementation<IUserService, UserService>();
             });
 
-            var userService = arrange.Resolve();
+            var userService = arrange.Resolve<IUserService>();
 
             Assert.IsInstanceOf<UserService>(userService);
         }

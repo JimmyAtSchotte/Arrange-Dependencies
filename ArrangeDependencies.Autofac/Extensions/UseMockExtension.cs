@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using ArrangeDependencies.Core.Interfaces;
+using Autofac;
 using Moq;
 using System;
 
@@ -6,16 +7,18 @@ namespace ArrangeDependencies.Autofac.Extensions
 {
     public static class UseMockExtension
     {
-        public static ArrangeBuilder UseMock<T>(this ArrangeBuilder arrangeBuilder, Action<Mock<T>> mock) where T : class
+        public static IArrangeBuilder<ContainerBuilder> UseMock<TMock>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Action<Mock<TMock>> mock) 
+            where TMock : class
         {
-            AddMock(arrangeBuilder, mock);
+            AddMock(arrangeBuilder as ArrangeBuilder, mock);
 
             return arrangeBuilder;
         }
 
-        public static ArrangeBuilder UseMock<T>(this ArrangeBuilder arrangeBuilder, Action<Mock<T>> mock, out Mock<T> result) where T : class
+        public static IArrangeBuilder<ContainerBuilder> UseMock<TMock>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Action<Mock<TMock>> mock, out Mock<TMock> result) 
+            where TMock : class
         { 
-            result = AddMock(arrangeBuilder, mock);
+            result = AddMock(arrangeBuilder as ArrangeBuilder, mock);
 
             return arrangeBuilder;
         }
@@ -25,11 +28,9 @@ namespace ArrangeDependencies.Autofac.Extensions
             var mockObject = new Mock<T>();
             mock.Invoke(mockObject);
 
-            arrangeBuilder.Extend((c) => c.Register<T>((context) => mockObject.Object));
+            arrangeBuilder.AddDependency((c) => c.Register<T>((context) => mockObject.Object));
 
             return mockObject;
-
         }
-
     }
 }

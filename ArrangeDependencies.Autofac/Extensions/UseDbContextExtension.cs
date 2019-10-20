@@ -3,26 +3,31 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ArrangeDependencies.Core.Interfaces;
+using ArrangeDependencies.Core.SharedKernel;
 
 namespace ArrangeDependencies.Autofac.Extensions
 {
     public static class UseDbContextExtension
     {
-        public static ArrangeBuilder UseDbContext<TContext>(this ArrangeBuilder arrangeBuilder) where TContext : DbContext
+        public static IArrangeBuilder<ContainerBuilder> UseDbContext<TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder) 
+            where TContext : DbContext
         {
-            AddDbContext<TContext>(arrangeBuilder);
+            AddDbContext<TContext>(arrangeBuilder as ArrangeBuilder);
 
             return arrangeBuilder;
         }
 
-        public static ArrangeBuilder UseDbContext<TContext>(this ArrangeBuilder arrangeBuilder, out TContext result) where TContext : DbContext
+        public static IArrangeBuilder<ContainerBuilder> UseDbContext<TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, out TContext result) 
+            where TContext : DbContext
         {
-            result = AddDbContext<TContext>(arrangeBuilder);
+            result = AddDbContext<TContext>(arrangeBuilder as ArrangeBuilder);
 
             return arrangeBuilder;
         }
 
-        private static TContext AddDbContext<TContext>(ArrangeBuilder arrangeBuilder) where TContext : DbContext
+        private static TContext AddDbContext<TContext>(ArrangeBuilder arrangeBuilder)
+            where TContext : DbContext
         {
             if (arrangeBuilder.IsTypeCached<TContext>(out var result))
                 return result;

@@ -4,9 +4,8 @@ using System.Text;
 
 namespace ArrangeDependencies.Core.Interfaces
 {
-    public interface IArrange<T> where T : class
+    public interface IArrangeDependencies
     {
-        T Resolve();
-        TInterface ResolveDependency<TInterface>();
+        TInterface Resolve<TInterface>();
     }
 }

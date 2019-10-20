@@ -15,12 +15,12 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldCreateEntity()
         {
-            var arrange = ArrangeDependencies<UserService>.Config(dependencies =>
+            var arrange = ArrangeDependencies.Config(dependencies =>
             {
                 dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));
             });
 
-            var db = arrange.ResolveDependency<TestDbContext>();
+            var db = arrange.Resolve<TestDbContext>();
             var user = db.User.FirstOrDefault();
 
             Assert.IsNotNull(user);
@@ -31,7 +31,7 @@ namespace ArrangeDependencies.Autofac.Test
         {
             Company company = null;
 
-            var arrange = ArrangeDependencies<UserService>.Config(dependencies =>
+            var arrange = ArrangeDependencies.Config(dependencies =>
             {
                 dependencies.UseEntity<Company, TestDbContext>((company) => company.SetName("Test name"), out company);
                 dependencies.UseEntity<User, TestDbContext>((user) => {
@@ -40,7 +40,7 @@ namespace ArrangeDependencies.Autofac.Test
                 });
             });
 
-            var db = arrange.ResolveDependency<TestDbContext>();
+            var db = arrange.Resolve<TestDbContext>();
             var user = db.User.FirstOrDefault();
 
             Assert.AreEqual(company.Id, user.CompanyId);
@@ -52,13 +52,13 @@ namespace ArrangeDependencies.Autofac.Test
         {
             Company company = null;
 
-            var arrange = ArrangeDependencies<UserService>.Config(dependencies =>
+            var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
             {
-                dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));
+                dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));                
             });
 
-            var service = arrange.Resolve();
-            var db = arrange.ResolveDependency<TestDbContext>();
+            var service = arrange.Resolve<IUserService>();
+            var db = arrange.Resolve<TestDbContext>();
             var user = db.User.Count() ;
 
             Assert.AreEqual(1, db.User.Count());
