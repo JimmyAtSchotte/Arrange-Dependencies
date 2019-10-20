@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net45</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Jimmy Mattsson</Authors>
+    <RepositoryType>GitHub</RepositoryType>
+    <RepositoryUrl>https://github.com/JimmyAtSchotte/Arrange-Dependencies</RepositoryUrl>
+    <Description>Arrange your dependencies for your test scope. Includes abstractions</Description>
   </PropertyGroup>
 
 </Project>
