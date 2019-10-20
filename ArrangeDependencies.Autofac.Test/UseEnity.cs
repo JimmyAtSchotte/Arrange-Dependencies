@@ -49,8 +49,6 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldNotCreateMultipleEntitesOnMultipleResolves()
         {
-            Company company = null;
-
             var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
             {
                 dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));                

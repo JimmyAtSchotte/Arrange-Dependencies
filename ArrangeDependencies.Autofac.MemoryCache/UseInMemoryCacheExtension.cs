@@ -34,7 +34,7 @@ namespace ArrangeDependencies.Autofac.MemoryCache
             serviceCollection.AddMemoryCache();
             var cache = serviceCollection.BuildServiceProvider().GetService<IMemoryCache>();          
 
-            arrangeBuilder.UseContainerBuilder((c) => c.Register(c => cache).As<IMemoryCache>());
+            arrangeBuilder.UseContainerBuilder((c) => c.Register(t => cache).As<IMemoryCache>());
             arrangeBuilder.AddTypeToCache(cache);
 
             return cache;

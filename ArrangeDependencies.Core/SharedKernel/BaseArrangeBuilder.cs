@@ -42,7 +42,10 @@ namespace ArrangeDependencies.Core.SharedKernel
         public virtual T Build()
         {
             var containerBuilder =  Activator.CreateInstance(typeof(T)) as T;
-            _dependencies.ForEach(x => x?.Invoke(containerBuilder));
+
+            foreach (var dependency in _dependencies)            
+                dependency.Invoke(containerBuilder);
+            
             return containerBuilder;
         }
     }
