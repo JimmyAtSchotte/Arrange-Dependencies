@@ -36,7 +36,7 @@ namespace ArrangeDependencies.Autofac.Extensions
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddDbContext<TContext>(config => config.UseInMemoryDatabase(arrangeBuilder.GetHashCode().ToString(), root));
          
-            arrangeBuilder.UseImplementation((c) => c.Populate(serviceCollection));
+            arrangeBuilder.UseContainerBuilder((c) => c.Populate(serviceCollection));
 
             var db = serviceCollection.BuildServiceProvider().GetService<TContext>();
             arrangeBuilder.AddTypeToCache(db);
