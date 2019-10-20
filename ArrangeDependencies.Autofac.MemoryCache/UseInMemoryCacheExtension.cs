@@ -6,26 +6,26 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace ArrangeDependencies.Autofac.InMemoryCache
+namespace ArrangeDependencies.Autofac.MemoryCache
 {
-    public static class UseInMemoryCacheExtension
+    public static class UseMemoryCacheExtension
     {
-        public static IArrangeBuilder<ContainerBuilder> UseInMemoryCache(this IArrangeBuilder<ContainerBuilder> arrangeBuilder)
+        public static IArrangeBuilder<ContainerBuilder> UseMemoryCache(this IArrangeBuilder<ContainerBuilder> arrangeBuilder)
         {
-            AddInMemoryCache(arrangeBuilder as ArrangeBuilder);
+            AddMemoryCache(arrangeBuilder as ArrangeBuilder);
 
             return arrangeBuilder;
         }
 
-        public static IArrangeBuilder<ContainerBuilder> UseInMemoryCache<T>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, object key, T value)
+        public static IArrangeBuilder<ContainerBuilder> UseMemoryCache<T>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, object key, T value)
         {
-            var memoryCache = AddInMemoryCache(arrangeBuilder as ArrangeBuilder);
+            var memoryCache = AddMemoryCache(arrangeBuilder as ArrangeBuilder);
             memoryCache.Set(key, value);
 
             return arrangeBuilder;
         }
         
-        private static IMemoryCache AddInMemoryCache(ArrangeBuilder arrangeBuilder)
+        private static IMemoryCache AddMemoryCache(ArrangeBuilder arrangeBuilder)
         {
             if (arrangeBuilder.IsTypeCached<IMemoryCache>(out var result))
                 return result;

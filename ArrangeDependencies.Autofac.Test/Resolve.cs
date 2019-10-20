@@ -8,13 +8,22 @@ namespace ArrangeDependencies.Autofac.Test
     public class Resolve
     {       
         [Test]
-        public void ShouldAutResolveMissingDependeciesWithMocks()
+        public void ShouldAutoResolveMissingDependeciesWithMocks()
         {
             var arrange = ArrangeDependencies.Config<IUserService, UserService>();
 
             var userService = arrange.Resolve<IUserService>();
 
             Assert.IsInstanceOf<UserService>(userService);
+        }
+
+        [Test]
+        public void ShouldAutoResolveLogging()
+        {
+            var arrange = ArrangeDependencies.Config<IUserService, UserService>();
+
+            var userService = arrange.Resolve<IUserService>();
+            userService.Log();
         }
     }
 }

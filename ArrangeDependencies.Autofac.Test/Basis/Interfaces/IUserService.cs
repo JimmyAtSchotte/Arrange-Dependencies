@@ -6,5 +6,6 @@ namespace ArrangeDependencies.Autofac.Test.Basis.Interfaces
 {
     public interface IUserService
     {
+        void Log();
     }
 }

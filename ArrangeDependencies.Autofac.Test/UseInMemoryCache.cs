@@ -1,15 +1,14 @@
-﻿using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
-using ArrangeDependencies.Autofac.Test.Basis.Repository;
-using ArrangeDependencies.Autofac.InMemoryCache;
-using NUnit.Framework;
-using Microsoft.Extensions.Caching.Memory;
-using ArrangeDependencies.Autofac.Test.Basis.Entites;
-using ArrangeDependencies.Autofac.EntityFrameworkCore;
+﻿using ArrangeDependencies.Autofac.EntityFrameworkCore;
+using ArrangeDependencies.Autofac.MemoryCache;
 using ArrangeDependencies.Autofac.Test.Basis;
+using ArrangeDependencies.Autofac.Test.Basis.Entites;
+using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
+using ArrangeDependencies.Autofac.Test.Basis.Repository;
+using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    public class UseInMemoryCache
+    public class UseMemoryCache
     {
         [Test]
         public void ShouldResolveClassWithInMemoryCacheDependency()
@@ -33,7 +32,7 @@ namespace ArrangeDependencies.Autofac.Test
             var arrange = ArrangeDependencies.Config<IUserRepository, UserRepository>(dependencies =>
             {
                 dependencies.UseDbContext<TestDbContext>();
-                dependencies.UseInMemoryCache("Test", user);
+                dependencies.UseMemoryCache("Test", user);
             });
 
             var userRepository = arrange.Resolve<IUserRepository>();

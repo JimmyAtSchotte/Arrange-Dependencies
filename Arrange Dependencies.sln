@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.EntityFrameworkCore", "ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj", "{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.InMemoryCache", "ArrangeDependencies.Autofac.InMemoryCache\ArrangeDependencies.Autofac.InMemoryCache.csproj", "{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.MemoryCache", "ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.csproj", "{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
