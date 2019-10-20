@@ -10,7 +10,13 @@ namespace ArrangeDependencies.Autofac.Extensions
 {
     public static class UseImplementationExtension
     {
-
+        /// <summary>
+        /// Define an implementation for a interface. If the implementation has undefined dependencies they will default to Mock.Of&lt;T&gt;
+        /// </summary>
+        /// <typeparam name="TInterface"></typeparam>
+        /// <typeparam name="TImplementation"></typeparam>
+        /// <param name="arrangeBuilder"></param>
+        /// <returns></returns>
         public static IArrangeBuilder<ContainerBuilder> UseImplementation<TInterface, TImplementation>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder)
             where TInterface : class
             where TImplementation : class        

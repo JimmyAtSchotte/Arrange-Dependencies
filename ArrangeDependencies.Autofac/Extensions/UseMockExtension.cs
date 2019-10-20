@@ -7,6 +7,13 @@ namespace ArrangeDependencies.Autofac.Extensions
 {
     public static class UseMockExtension
     {
+        /// <summary>
+        /// Define a mock of a dependency that will be used in testing
+        /// </summary>
+        /// <typeparam name="TMock"></typeparam>
+        /// <param name="arrangeBuilder"></param>
+        /// <param name="mock"></param>
+        /// <returns></returns>
         public static IArrangeBuilder<ContainerBuilder> UseMock<TMock>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Action<Mock<TMock>> mock) 
             where TMock : class
         {
@@ -15,6 +22,14 @@ namespace ArrangeDependencies.Autofac.Extensions
             return arrangeBuilder;
         }
 
+        /// <summary>
+        /// Define a mock of a dependency that will be used in testing
+        /// Produces the <typeparamref name="TMock"/> as out parameter
+        /// </summary>
+        /// <typeparam name="TMock"></typeparam>
+        /// <param name="arrangeBuilder"></param>
+        /// <param name="mock"></param>
+        /// <returns></returns>
         public static IArrangeBuilder<ContainerBuilder> UseMock<TMock>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Action<Mock<TMock>> mock, out Mock<TMock> result) 
             where TMock : class
         { 

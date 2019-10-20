@@ -10,6 +10,13 @@ namespace ArrangeDependencies.Autofac.Extensions
 {
     public static class UseDbContextExtension
     {
+
+        /// <summary>
+        /// Define an <typeparamref name="TContext"/> to be used in the arrange scope 
+        /// </summary>
+        /// <typeparam name="TContext"></typeparam>
+        /// <param name="arrangeBuilder"></param>
+        /// <returns></returns>
         public static IArrangeBuilder<ContainerBuilder> UseDbContext<TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder) 
             where TContext : DbContext
         {
