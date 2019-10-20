@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.Test", "ArrangeDependencies.Autofac.Test\ArrangeDependencies.Autofac.Test.csproj", "{89693782-CEAF-49B7-87EE-8AC539891466}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.EntityFrameworkCore", "ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj", "{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{89693782-CEAF-49B7-87EE-8AC539891466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89693782-CEAF-49B7-87EE-8AC539891466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89693782-CEAF-49B7-87EE-8AC539891466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

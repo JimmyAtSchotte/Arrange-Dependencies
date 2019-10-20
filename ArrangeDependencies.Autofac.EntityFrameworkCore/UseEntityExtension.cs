@@ -1,12 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
-using Autofac.Extensions.DependencyInjection;
-using System;
-using ArrangeDependencies.Core.Interfaces;
+﻿using ArrangeDependencies.Core.Interfaces;
 using Autofac;
+using Microsoft.EntityFrameworkCore;
+using System;
 
-namespace ArrangeDependencies.Autofac.Extensions
+namespace ArrangeDependencies.Autofac.EntityFrameworkCore
 {
     public static class UseEntityExtension
     {
@@ -61,7 +58,7 @@ namespace ArrangeDependencies.Autofac.Extensions
             where TContext : DbContext
         {
             arrangeBuilder.UseDbContext<TContext>(out var db);
-                        
+
             db.Set<TEntity>().Add(entity);
             db.SaveChanges();
 

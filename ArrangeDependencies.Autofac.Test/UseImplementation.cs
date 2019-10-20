@@ -1,8 +1,7 @@
-﻿using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
+﻿using ArrangeDependencies.Autofac.Extensions;
+using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
 using ArrangeDependencies.Autofac.Test.Basis.Services;
 using NUnit.Framework;
-using Autofac;
-using ArrangeDependencies.Autofac.Extensions;
 
 namespace ArrangeDependencies.Autofac.Test
 {

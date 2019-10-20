@@ -1,10 +1,9 @@
-﻿using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
+﻿using ArrangeDependencies.Autofac.EntityFrameworkCore;
+using ArrangeDependencies.Autofac.Test.Basis;
+using ArrangeDependencies.Autofac.Test.Basis.Entites;
+using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
 using ArrangeDependencies.Autofac.Test.Basis.Services;
 using NUnit.Framework;
-using Autofac;
-using ArrangeDependencies.Autofac.Extensions;
-using ArrangeDependencies.Autofac.Test.Basis.Entites;
-using ArrangeDependencies.Autofac.Test.Basis;
 using System.Linq;
 
 namespace ArrangeDependencies.Autofac.Test

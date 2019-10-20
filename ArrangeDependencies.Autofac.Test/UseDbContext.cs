@@ -1,7 +1,5 @@
-﻿using ArrangeDependencies.Autofac.Extensions;
+﻿using ArrangeDependencies.Autofac.EntityFrameworkCore;
 using ArrangeDependencies.Autofac.Test.Basis;
-using ArrangeDependencies.Autofac.Test.Basis.Services;
-using Autofac;
 using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
