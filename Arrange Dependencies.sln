@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.EntityFrameworkCore", "ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj", "{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.InMemoryCache", "ArrangeDependencies.Autofac.InMemoryCache\ArrangeDependencies.Autofac.InMemoryCache.csproj", "{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

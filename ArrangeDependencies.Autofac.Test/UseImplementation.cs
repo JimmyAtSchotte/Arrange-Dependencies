@@ -1,5 +1,6 @@
 ﻿using ArrangeDependencies.Autofac.Extensions;
 using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
+using ArrangeDependencies.Autofac.Test.Basis.Repository;
 using ArrangeDependencies.Autofac.Test.Basis.Services;
 using NUnit.Framework;
 
@@ -11,7 +12,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldResolveUseImplementation()
         {
-            var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
+            var arrange = ArrangeDependencies.Config(dependencies =>
             {
                 dependencies.UseImplementation<IUserService, UserService>();
             });
@@ -20,5 +21,5 @@ namespace ArrangeDependencies.Autofac.Test
 
             Assert.IsInstanceOf<UserService>(userService);
         }
-    }
+     }
 }

@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\ArrangeDependencies.Autofac.InMemoryCache\ArrangeDependencies.Autofac.InMemoryCache.csproj" />
     <ProjectReference Include="..\ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.csproj" />
     <ProjectReference Include="..\ArrangeDependencies.Core\ArrangeDependencies.Core.csproj" />
   </ItemGroup>

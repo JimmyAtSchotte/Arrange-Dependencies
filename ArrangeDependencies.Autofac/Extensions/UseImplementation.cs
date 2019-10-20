@@ -25,7 +25,7 @@ namespace ArrangeDependencies.Autofac.Extensions
             AddDependency(arrangeBuilder as ArrangeBuilder, (containerBuilder) => containerBuilder.Register((context) =>
             {
                 var constructors = typeof(TImplementation).GetConstructors();
-                var parameters = constructors.SelectMany(x => x.GetParameters()).Where(x => x.ParameterType.IsInterface).Distinct();
+                var parameters = constructors.SelectMany(x => x.GetParameters()).Distinct();
                 var args = new List<object>();
 
                 foreach (var parameter in parameters)
