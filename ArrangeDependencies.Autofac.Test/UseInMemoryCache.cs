@@ -13,7 +13,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldResolveClassWithInMemoryCacheDependency()
         {
-            var arrange = ArrangeDependencies.Config<IUserRepository, UserRepository>(dependencies =>
+            var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
             {
                 dependencies.UseDbContext<TestDbContext>();
             });
@@ -29,7 +29,7 @@ namespace ArrangeDependencies.Autofac.Test
             var user = new User();
             user.SetName("Test");
 
-            var arrange = ArrangeDependencies.Config<IUserRepository, UserRepository>(dependencies =>
+            var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
             {
                 dependencies.UseDbContext<TestDbContext>();
                 dependencies.UseMemoryCache("Test", user);

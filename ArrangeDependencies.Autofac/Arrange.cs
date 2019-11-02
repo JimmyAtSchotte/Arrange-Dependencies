@@ -1,38 +1,23 @@
-﻿using ArrangeDependencies.Core.Interfaces;
-using ArrangeDependencies.Autofac.Extensions;
+﻿using ArrangeDependencies.Autofac.Extensions;
+using ArrangeDependencies.Autofac.Helpers;
+using ArrangeDependencies.Core.Interfaces;
 using Autofac;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Moq;
-using ArrangeDependencies.Autofac.Helpers;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ArrangeDependencies.Autofac
 {
-    public class ArrangeDependencies : IArrangeDependencies
+    public class Arrange
     {
-        private IContainer _container;
-
-        internal ArrangeDependencies(IContainer container)
-        {
-            _container = container;
-        }
-
-
-        public TInterface Resolve<TInterface>()
-        {
-            return _container.Resolve<TInterface>();
-        }
-
-
-        [Obsolete("This method has been deprecated and will be removed in 2.0. Use Arrange.Dependencies() instead.")]
-        public static IArrangeDependencies Config(Action<IArrangeBuilder<ContainerBuilder>> config = null)
+        public static IArrangeDependencies Dependencies(Action<IArrangeBuilder<ContainerBuilder>> config = null)
         {
             var arrangeBuilder = new ArrangeBuilder();
             config?.Invoke(arrangeBuilder);
 
-            var containerBuilder = arrangeBuilder.Build(); 
+            var containerBuilder = arrangeBuilder.Build();
             var container = containerBuilder.Build();
 
             return new ArrangeDependencies(container);
@@ -45,9 +30,7 @@ namespace ArrangeDependencies.Autofac
         /// <typeparam name="T"></typeparam>
         /// <param name="config"></param>
         /// <returns></returns>
-        /// 
-        [Obsolete("This method has been deprecated and will be removed in 2.0. Use Arrange.Dependencies<TInterface, TImplementation>() instead.")]
-        public static IArrangeDependencies Config<TInterface, TImplementation>(Action<IArrangeBuilder<ContainerBuilder>> config = null) 
+        public static IArrangeDependencies Dependencies<TInterface, TImplementation>(Action<IArrangeBuilder<ContainerBuilder>> config = null)
             where TInterface : class
             where TImplementation : class
         {
@@ -55,7 +38,7 @@ namespace ArrangeDependencies.Autofac
             config?.Invoke(arrangeBuilder);
 
             arrangeBuilder.UseImplementation<TInterface, TImplementation>();
-                       
+
             var containerBuilder = arrangeBuilder.Build();
             containerBuilder.Register((context) =>
             {
@@ -70,11 +53,9 @@ namespace ArrangeDependencies.Autofac
             }).As<TInterface>().IfNotRegistered(typeof(TInterface));
 
             var container = containerBuilder.Build();
-                       
+
             return new ArrangeDependencies(container);
         }
 
-        
-       
     }
 }

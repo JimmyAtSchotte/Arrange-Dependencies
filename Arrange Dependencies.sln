@@ -3,15 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Core", "ArrangeDependencies.Core\ArrangeDependencies.Core.csproj", "{ADEDFA14-BD13-450F-8E04-5E5421F64543}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrangeDependencies.Core", "ArrangeDependencies.Core\ArrangeDependencies.Core.csproj", "{ADEDFA14-BD13-450F-8E04-5E5421F64543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac", "ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.csproj", "{69C2F224-60B4-4340-A011-3952CB80F124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrangeDependencies.Autofac", "ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.csproj", "{69C2F224-60B4-4340-A011-3952CB80F124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.Test", "ArrangeDependencies.Autofac.Test\ArrangeDependencies.Autofac.Test.csproj", "{89693782-CEAF-49B7-87EE-8AC539891466}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrangeDependencies.Autofac.Test", "ArrangeDependencies.Autofac.Test\ArrangeDependencies.Autofac.Test.csproj", "{89693782-CEAF-49B7-87EE-8AC539891466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.EntityFrameworkCore", "ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj", "{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrangeDependencies.Autofac.EntityFrameworkCore", "ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.csproj", "{7BB3C34A-70DC-48C2-ADAB-2BAF43BA2EAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.MemoryCache", "ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.csproj", "{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrangeDependencies.Autofac.MemoryCache", "ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.csproj", "{1B55CB56-B0C5-4015-A2C0-EA8ABD4646A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{299AAF5C-01F6-4812-8451-9E6902610884}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

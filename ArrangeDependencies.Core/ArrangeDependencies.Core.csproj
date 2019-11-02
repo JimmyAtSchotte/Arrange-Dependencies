@@ -17,6 +17,15 @@
     <RepositoryType>GitHub</RepositoryType>
     <RepositoryUrl>https://github.com/JimmyAtSchotte/Arrange-Dependencies</RepositoryUrl>
     <Description>Arrange your dependencies for your test scope. Includes abstractions</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.0|AnyCPU'">
+    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Core\ArrangeDependencies.Core.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.0|AnyCPU'">
+    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Core\ArrangeDependencies.Core.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

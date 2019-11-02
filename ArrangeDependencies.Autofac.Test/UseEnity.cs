@@ -14,7 +14,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldCreateEntity()
         {
-            var arrange = ArrangeDependencies.Config(dependencies =>
+            var arrange = Arrange.Dependencies(dependencies =>
             {
                 dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));
             });
@@ -30,7 +30,7 @@ namespace ArrangeDependencies.Autofac.Test
         {
             Company company = null;
 
-            var arrange = ArrangeDependencies.Config(dependencies =>
+            var arrange = Arrange.Dependencies(dependencies =>
             {
                 dependencies.UseEntity<Company, TestDbContext>((company) => company.SetName("Test name"), out company);
                 dependencies.UseEntity<User, TestDbContext>((user) => {
@@ -49,7 +49,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldNotCreateMultipleEntitesOnMultipleResolves()
         {
-            var arrange = ArrangeDependencies.Config<IUserService, UserService>(dependencies =>
+            var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>
             {
                 dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));                
             });

@@ -12,7 +12,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldResolveUseImplementation()
         {
-            var arrange = ArrangeDependencies.Config(dependencies =>
+            var arrange = Arrange.Dependencies(dependencies =>
             {
                 dependencies.UseImplementation<IUserService, UserService>();
             });

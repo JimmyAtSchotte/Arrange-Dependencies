@@ -10,7 +10,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldAutoResolveMissingDependeciesWithMocks()
         {
-            var arrange = ArrangeDependencies.Config<IUserService, UserService>();
+            var arrange = Arrange.Dependencies<IUserService, UserService>();
 
             var userService = arrange.Resolve<IUserService>();
 
@@ -20,7 +20,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldAutoResolveLogging()
         {
-            var arrange = ArrangeDependencies.Config<IUserService, UserService>();
+            var arrange = Arrange.Dependencies<IUserService, UserService>();
 
             var userService = arrange.Resolve<IUserService>();
             userService.Log();

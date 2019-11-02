@@ -7,6 +7,15 @@
     <RepositoryType>GitHub</RepositoryType>
     <RepositoryUrl>https://github.com/JimmyAtSchotte/Arrange-Dependencies</RepositoryUrl>
     <Description>Arrange your dependencies for your test scope. Extension to use memory cache</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
+    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

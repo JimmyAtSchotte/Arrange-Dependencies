@@ -10,7 +10,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldUseDbContext()
         {
-            var arrange = ArrangeDependencies.Config(dependencies =>
+            var arrange = Arrange.Dependencies(dependencies =>
             {
                 dependencies.UseDbContext<TestDbContext>();
             });
@@ -23,7 +23,7 @@ namespace ArrangeDependencies.Autofac.Test
         [Test]
         public void ShouldNotRegisterDbContextTwice()
         {
-            var arrange = ArrangeDependencies.Config(dependencies =>
+            var arrange = Arrange.Dependencies(dependencies =>
             {
                 dependencies.UseDbContext<TestDbContext>();
                 dependencies.UseDbContext<TestDbContext>();
