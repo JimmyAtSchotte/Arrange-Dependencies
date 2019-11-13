@@ -22,5 +22,18 @@ namespace ArrangeDependencies.Autofac.Test
             Assert.IsInstanceOf<UserService>(userService);
         }
 
+        [Test]
+        public void ShouldResolveUsingMockAsOutParameter()
+        {
+            Mock<IUserRepository> userRepositoryMock = null;
+
+            var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>
+            {
+                dependencies.UseMock(out userRepositoryMock);
+            });
+            
+            Assert.IsNotNull(userRepositoryMock);
+        }
+
     }
 }

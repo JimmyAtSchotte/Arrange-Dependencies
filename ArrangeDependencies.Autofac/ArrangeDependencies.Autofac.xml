@@ -58,5 +58,15 @@
             <param name="mock"></param>
             <returns></returns>
         </member>
+        <member name="M:ArrangeDependencies.Autofac.Extensions.UseMockExtension.UseMock``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},Moq.Mock{``0}@)">
+            <summary>
+            Define a Mock.Of&lt;<typeparamref name="TMock"/>&gt; of a dependency that will be used in testing
+            Produces the <typeparamref name="TMock"/> as out parameter
+            </summary>
+            <typeparam name="TMock"></typeparam>
+            <param name="arrangeBuilder"></param>
+            <param name="mock"></param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

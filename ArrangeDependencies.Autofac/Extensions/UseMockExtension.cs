@@ -38,6 +38,22 @@ namespace ArrangeDependencies.Autofac.Extensions
             return arrangeBuilder;
         }
 
+        /// <summary>
+        /// Define a Mock.Of&lt;<typeparamref name="TMock"/>&gt; of a dependency that will be used in testing
+        /// Produces the <typeparamref name="TMock"/> as out parameter
+        /// </summary>
+        /// <typeparam name="TMock"></typeparam>
+        /// <param name="arrangeBuilder"></param>
+        /// <param name="mock"></param>
+        /// <returns></returns>
+        public static IArrangeBuilder<ContainerBuilder> UseMock<TMock>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, out Mock<TMock> result)
+            where TMock : class
+        {
+            result = AddMock(arrangeBuilder as ArrangeBuilder, (Mock<TMock> mock) => Mock.Of<TMock>());
+
+            return arrangeBuilder;
+        }
+
         private static Mock<T> AddMock<T>(ArrangeBuilder arrangeBuilder, Action<Mock<T>> mock) where T : class
         {
             var mockObject = new Mock<T>();
