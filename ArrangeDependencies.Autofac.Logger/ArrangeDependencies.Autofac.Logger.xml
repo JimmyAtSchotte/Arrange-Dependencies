@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ArrangeDependencies.Autofac.Logger</name>
+    </assembly>
+    <members>
+        <!-- Badly formed XML comment ignored for member "M:ArrangeDependencies.Autofac.Logger.UseLoggerExtension.UseLogger``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},Moq.Mock{Microsoft.Extensions.Logging.ILogger{``0}}@)" -->
+    </members>
+</doc>
