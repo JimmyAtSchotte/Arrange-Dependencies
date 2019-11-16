@@ -47,6 +47,24 @@ namespace ArrangeDependencies.Autofac.Test
         }
 
         [Test]
+        public void ShouldCreateRelatedEntity2()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseEntity<Company, TestDbContext>((company) => company.SetName("Test name"), out var company);
+                dependencies.UseEntity<User, TestDbContext>((user) => {
+                    user.SetName("Test name");
+                    user.SetCompany(company);
+                });
+            });
+
+            var db = arrange.Resolve<TestDbContext>();
+            var user = db.User.FirstOrDefault();
+
+            Assert.AreEqual(1, user.CompanyId);
+        }
+
+        [Test]
         public void ShouldNotCreateMultipleEntitesOnMultipleResolves()
         {
             var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>

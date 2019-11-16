@@ -14,7 +14,9 @@ namespace ArrangeDependencies.Autofac.Test
         {
             var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>
             {
-                dependencies.UseMock<IUserRepository>(mock => Mock.Of<IUserRepository>());
+                dependencies.UseMock<IUserRepository>(mock => {
+                    mock.Setup(x => x.GetByName(It.IsAny<string>())).Returns(new Basis.Entites.User());
+                });
             });
 
             var userService = arrange.Resolve<IUserService>();
