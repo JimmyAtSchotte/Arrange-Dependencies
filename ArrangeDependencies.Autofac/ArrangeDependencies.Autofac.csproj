@@ -8,7 +8,7 @@
     <RepositoryUrl>https://github.com/JimmyAtSchotte/Arrange-Dependencies</RepositoryUrl>
     <Description>Arrange your dependencies for your test scope. Implented as a façade against Moq and Autofac working together. Missing registrations in your container will automaticly be mocked.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.1.0</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">

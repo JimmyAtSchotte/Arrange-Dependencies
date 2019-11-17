@@ -1,6 +1,6 @@
 # Arrange-Dependencies
 
-The idea for this project is to simplyfy the arrange step when testing.
+The idea for this project is to simplify the arrange step when testing.
 
 ### Basic use
 
@@ -21,7 +21,7 @@ var userService = arrange.Resolve<IUserService>();
 
 This will produce a `UserService` to start testing on. All the injected dependencies in `UserService` will be injected as `Mock.Of<T>()`, resulting in methods calls on any dependency will return the default value of the return type.
 
-When adding more dependencies to the UserService you do not need to change all the tests setups that you have allready created. You may, however, still need to change some tests if the behavior has changed.
+When adding more dependencies to the UserService you do not need to change all the tests setups that you have already created. You may, however, still need to change some tests if the behavior has changed.
 
 This arrange block can be simplified by a one liner
 
@@ -44,7 +44,7 @@ var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>
 });
 ```
 
-Now `UserService` will use your mocked `IUserRepository`, instead of the default `Mock.Of<T>()`, and return a new `User` when `GetByName(name)` is called. The mock action is like any other Mock setup that you probably allready is used to.
+Now `UserService` will use your mocked `IUserRepository`, instead of the default `Mock.Of<T>()`, and return a new `User` when `GetByName(name)` is called. The mock action is like any other Mock setup that you probably already is used to.
 
 ### Use DbContext
 
@@ -70,7 +70,7 @@ var arrange = Arrange.Dependencies(dependencies =>
 });
 ```
 
-This will add a new user into `TestDbContext` that can be used in testing. NOTE: `UseDbContext` is called under the hood here, so you don´t need to define it.
+This will add a new user into `TestDbContext` that can be used in testing. NOTE: `UseDbContext` is called under the hood here, so you don't need to define it.
 
 
 ```csharp
@@ -130,7 +130,7 @@ I suggest you to check out the Test in this repo, to get more ideas how to make 
 
 ### Create your own extensions
 
-This library is extensable by nature, so if you find yourself writing the same mock setup over and over again, I suggest you to create your own extension method for that mock.
+This library is extensible by nature, so if you find yourself writing the same mock setup over and over again, I suggest you to create your own extension method for that mock.
 
 ```csharp
 public static class UseMyCustomExtensionExtension
