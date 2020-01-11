@@ -39,6 +39,22 @@
             <param name="arrangeBuilder"></param>
             <returns></returns>
         </member>
+        <member name="M:ArrangeDependencies.Autofac.Extensions.UseImplementationsOfExtension.UseImplementationsOf``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder})">
+            <summary>
+            Using all implementations of T in the assembly of T
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="arrangeBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ArrangeDependencies.Autofac.Extensions.UseImplementationsOfExtension.UseImplementationsOf``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},System.Reflection.Assembly[])">
+            <summary>
+            Unsing all implementations of T in provided assemblies
+            </summary>
+            <typeparam name="TInterface"></typeparam>
+            <param name="arrangeBuilder"></param>
+            <returns></returns>
+        </member>
         <member name="M:ArrangeDependencies.Autofac.Extensions.UseMockExtension.UseMock``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},System.Action{Moq.Mock{``0}})">
             <summary>
             Define a mock of a dependency that will be used in testing

@@ -1,6 +1,6 @@
 ﻿using ArrangeDependencies.Autofac.Extensions;
+using ArrangeDependencies.Autofac.Test.Basis.Factories;
 using ArrangeDependencies.Autofac.Test.Basis.Interfaces;
-using ArrangeDependencies.Autofac.Test.Basis.Repository;
 using ArrangeDependencies.Autofac.Test.Basis.Services;
 using NUnit.Framework;
 
@@ -21,5 +21,32 @@ namespace ArrangeDependencies.Autofac.Test
 
             Assert.IsInstanceOf<UserService>(userService);
         }
-     }
+
+        [Test]
+        public void ShouldResolveMultipleImplementations()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseImplementation<IUserFactory, AdminUserFacroy>();
+                dependencies.UseImplementation<IUserFactory, BasicUserFacroy>();
+            });
+
+            var providers = arrange.Resolve<IUserFactory[]>();
+
+            Assert.AreEqual(2, providers.Length);
+        }
+
+        [Test]
+        public void ShouldResolveMultipleImplementationsFromAssembly()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseImplementations<IUserFactory>(typeof(IUserFactory).Assembly);
+            });
+
+            var providers = arrange.Resolve<IUserFactory[]>();
+
+            Assert.AreEqual(2, providers.Length);
+        }
+    }
 }

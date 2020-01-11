@@ -32,7 +32,7 @@ namespace ArrangeDependencies.Autofac
         /// <returns></returns>
         public static IArrangeDependencies Dependencies<TInterface, TImplementation>(Action<IArrangeBuilder<ContainerBuilder>> config = null)
             where TInterface : class
-            where TImplementation : class
+            where TImplementation : class, TInterface
         {
             var arrangeBuilder = new ArrangeBuilder();
             config?.Invoke(arrangeBuilder);

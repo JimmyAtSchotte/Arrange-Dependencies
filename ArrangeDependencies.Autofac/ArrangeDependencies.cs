@@ -49,7 +49,7 @@ namespace ArrangeDependencies.Autofac
         [Obsolete("This method has been deprecated and will be removed in 2.0. Use Arrange.Dependencies<TInterface, TImplementation>() instead.")]
         public static IArrangeDependencies Config<TInterface, TImplementation>(Action<IArrangeBuilder<ContainerBuilder>> config = null) 
             where TInterface : class
-            where TImplementation : class
+            where TImplementation : class, TInterface
         {
             var arrangeBuilder = new ArrangeBuilder();
             config?.Invoke(arrangeBuilder);
@@ -72,9 +72,7 @@ namespace ArrangeDependencies.Autofac
             var container = containerBuilder.Build();
                        
             return new ArrangeDependencies(container);
-        }
-
-        
+        }      
        
     }
 }
