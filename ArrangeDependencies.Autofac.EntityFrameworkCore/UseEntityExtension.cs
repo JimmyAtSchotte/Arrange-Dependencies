@@ -53,6 +53,46 @@ namespace ArrangeDependencies.Autofac.EntityFrameworkCore
             return arrangeBuilder;
         }
 
+        public static IArrangeBuilder<ContainerBuilder> UseEntity<TEntity, TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Func<TEntity> entityBuilder)
+           where TEntity : class
+           where TContext : DbContext
+        {
+            var entity = entityBuilder();
+
+            AddEntity<TEntity, TContext>(arrangeBuilder, entity);
+
+            return arrangeBuilder;
+        }
+
+        public static IArrangeBuilder<ContainerBuilder> UseEntity<TEntity, TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Func<TEntity> entityBuilder, out TEntity result)
+           where TEntity : class
+           where TContext : DbContext
+        {
+            var entity = entityBuilder();
+
+            result = AddEntity<TEntity, TContext>(arrangeBuilder, entity);
+
+            return arrangeBuilder;
+        }
+
+        public static IArrangeBuilder<ContainerBuilder> UseEntity<TEntity, TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, TEntity entity)
+        where TEntity : class
+        where TContext : DbContext
+        {
+            AddEntity<TEntity, TContext>(arrangeBuilder, entity);
+
+            return arrangeBuilder;
+        }
+
+        public static IArrangeBuilder<ContainerBuilder> UseEntity<TEntity, TContext>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, TEntity entity, out TEntity result)
+           where TEntity : class
+           where TContext : DbContext
+        {
+            result = AddEntity<TEntity, TContext>(arrangeBuilder, entity);
+
+            return arrangeBuilder;
+        }
+
         private static TEntity AddEntity<TEntity, TContext>(IArrangeBuilder<ContainerBuilder> arrangeBuilder, TEntity entity)
             where TEntity : class
             where TContext : DbContext

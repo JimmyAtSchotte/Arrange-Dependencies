@@ -9,7 +9,7 @@ using System.Linq;
 namespace ArrangeDependencies.Autofac.Test
 {
     [TestFixture]
-    public class UseEnity
+    public class UseEntity
     {
         [Test]
         public void ShouldCreateEntity()
@@ -62,6 +62,34 @@ namespace ArrangeDependencies.Autofac.Test
             var user = db.User.FirstOrDefault();
 
             Assert.AreEqual(1, user.CompanyId);
+        }
+
+        [Test]
+        public void ShouldAddEntityFromFunc()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseEntity<Company, TestDbContext>(() => new Company());                
+            });
+
+            var db = arrange.Resolve<TestDbContext>();
+            var company = db.Company.FirstOrDefault();
+
+            Assert.AreEqual(1, company.Id);
+        }
+
+        [Test]
+        public void ShouldAddEntity()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseEntity<Company, TestDbContext>(new Company());
+            });
+
+            var db = arrange.Resolve<TestDbContext>();
+            var company = db.Company.FirstOrDefault();
+
+            Assert.AreEqual(1, company.Id);
         }
 
         [Test]
