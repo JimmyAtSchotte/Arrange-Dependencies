@@ -39,6 +39,25 @@
             <param name="arrangeBuilder"></param>
             <returns></returns>
         </member>
+        <member name="M:ArrangeDependencies.Autofac.Extensions.UseImplementationExtension.UseImplementation``2(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},``1)">
+            <summary>
+            Define an implementation for a interface. 
+            </summary>
+            <param name="arrangeBuilder"></param>
+            <param name="implementation">The object that should be used as implementation</param>
+            <typeparam name="TInterface"></typeparam>
+            <typeparam name="TImplementation"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:ArrangeDependencies.Autofac.Extensions.UseImplementationExtension.UseImplementations``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder},System.Reflection.Assembly[])">
+            <summary>
+            Adds all implementations of TInterface in assemblies
+            </summary>
+            <param name="arrangeBuilder"></param>
+            <param name="assemblies"></param>
+            <typeparam name="TInterface"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:ArrangeDependencies.Autofac.Extensions.UseImplementationsOfExtension.UseImplementationsOf``1(ArrangeDependencies.Core.Interfaces.IArrangeBuilder{Autofac.ContainerBuilder})">
             <summary>
             Using all implementations of T in the assembly of T

@@ -29,7 +29,36 @@ namespace ArrangeDependencies.Autofac.Extensions
 
             return arrangeBuilder;
         }
+        
+        /// <summary>
+        /// Define an implementation for a interface. 
+        /// </summary>
+        /// <param name="arrangeBuilder"></param>
+        /// <param name="implementation">The object that should be used as implementation</param>
+        /// <typeparam name="TInterface"></typeparam>
+        /// <typeparam name="TImplementation"></typeparam>
+        /// <returns></returns>
+        public static IArrangeBuilder<ContainerBuilder> UseImplementation<TInterface, TImplementation>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, TImplementation implementation)
+            where TInterface : class
+            where TImplementation : class, TInterface
+        {
 
+            if (arrangeBuilder is ArrangeBuilder builder)
+                builder.AddDependency((containerBuilder) =>
+                {
+                    containerBuilder.Register(context => implementation).As<TInterface>();
+                });
+
+            return arrangeBuilder;
+        }
+        
+        /// <summary>
+        /// Adds all implementations of TInterface in assemblies
+        /// </summary>
+        /// <param name="arrangeBuilder"></param>
+        /// <param name="assemblies"></param>
+        /// <typeparam name="TInterface"></typeparam>
+        /// <returns></returns>
         public static IArrangeBuilder<ContainerBuilder> UseImplementations<TInterface>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, params Assembly[] assemblies)
             where TInterface : class
         {

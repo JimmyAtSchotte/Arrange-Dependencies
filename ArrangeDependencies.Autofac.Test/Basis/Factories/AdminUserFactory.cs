@@ -2,7 +2,7 @@
 
 namespace ArrangeDependencies.Autofac.Test.Basis.Factories
 {
-    public class AdminUserFacroy : IUserFactory
+    public class AdminUserFactory : IUserFactory
     {
     }
 }

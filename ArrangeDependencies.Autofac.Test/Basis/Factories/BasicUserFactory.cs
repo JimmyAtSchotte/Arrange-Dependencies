@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ArrangeDependencies.Autofac.Test.Basis.Factories
 {
-    public class BasicUserFacroy : IUserFactory
+    public class BasicUserFactory : IUserFactory
     {
     }
 }

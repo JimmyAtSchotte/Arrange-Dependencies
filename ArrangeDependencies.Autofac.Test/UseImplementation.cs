@@ -21,14 +21,27 @@ namespace ArrangeDependencies.Autofac.Test
 
             Assert.IsInstanceOf<UserService>(userService);
         }
+        
+        [Test]
+        public void ShouldResolveUseImplementationWhenConstructed()
+        {
+            var arrange = Arrange.Dependencies(dependencies =>
+            {
+                dependencies.UseImplementation<IUserFactory, AdminUserFactory>(new AdminUserFactory());
+            });
+
+            var userService = arrange.Resolve<IUserFactory>();
+
+            Assert.IsInstanceOf<AdminUserFactory>(userService);
+        }
 
         [Test]
         public void ShouldResolveMultipleImplementations()
         {
             var arrange = Arrange.Dependencies(dependencies =>
             {
-                dependencies.UseImplementation<IUserFactory, AdminUserFacroy>();
-                dependencies.UseImplementation<IUserFactory, BasicUserFacroy>();
+                dependencies.UseImplementation<IUserFactory, AdminUserFactory>();
+                dependencies.UseImplementation<IUserFactory, BasicUserFactory>();
             });
 
             var providers = arrange.Resolve<IUserFactory[]>();

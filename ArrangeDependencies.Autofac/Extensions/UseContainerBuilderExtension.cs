@@ -9,6 +9,8 @@ namespace ArrangeDependencies.Autofac.Extensions
     public static class UseContainerBuilderExtension
     {
 
+
+
         /// <summary>
         /// Difine dependency via the AutoFac Cointainer builder.
         /// </summary>
