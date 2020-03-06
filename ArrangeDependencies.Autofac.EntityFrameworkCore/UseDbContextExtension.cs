@@ -3,6 +3,7 @@ using ArrangeDependencies.Core.Interfaces;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -41,7 +42,8 @@ namespace ArrangeDependencies.Autofac.EntityFrameworkCore
 
             var root = new InMemoryDatabaseRoot();
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddDbContext<TContext>(config => config.UseInMemoryDatabase(arrangeBuilder.GetHashCode().ToString(), root));
+            serviceCollection.AddDbContext<TContext>(config => config.UseInMemoryDatabase(arrangeBuilder.GetHashCode().ToString(), root)
+                .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.ManyServiceProvidersCreatedWarning)));
 
             arrangeBuilder.UseContainerBuilder((c) => c.Populate(serviceCollection));
 

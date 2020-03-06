@@ -102,9 +102,25 @@ namespace ArrangeDependencies.Autofac.Test
 
             var service = arrange.Resolve<IUserService>();
             var db = arrange.Resolve<TestDbContext>();
-            var user = db.User.Count() ;
-
+            
             Assert.AreEqual(1, db.User.Count());
+        }
+        
+        [Test]
+        public void ShouldCreateMultipleInstances()
+        {
+            for (int i = 0; i < 25; i++)
+            {
+                var arrange = Arrange.Dependencies<IUserService, UserService>(dependencies =>
+                {
+                    dependencies.UseEntity<User, TestDbContext>((user) => user.SetName("Test name"));                
+                });
+
+                var db = arrange.Resolve<TestDbContext>();
+        
+                Assert.AreEqual(1, db.User.Count());
+            }
+        
         }
     }
 }
