@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.Logger", "ArrangeDependencies.Autofac.Logger\ArrangeDependencies.Autofac.Logger.csproj", "{7E6AFFCA-501F-4C98-9537-7547B4589B6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrangeDependencies.Autofac.HttpClient", "ArrangeDependencies.Autofac.HttpClient\ArrangeDependencies.Autofac.HttpClient.csproj", "{384E099C-D946-406C-847F-06ED0B2DA072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,11 +53,17 @@ Global
 		{7E6AFFCA-501F-4C98-9537-7547B4589B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E6AFFCA-501F-4C98-9537-7547B4589B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E6AFFCA-501F-4C98-9537-7547B4589B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384E099C-D946-406C-847F-06ED0B2DA072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384E099C-D946-406C-847F-06ED0B2DA072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384E099C-D946-406C-847F-06ED0B2DA072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384E099C-D946-406C-847F-06ED0B2DA072}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2EDD5E3-5F5D-46C3-9EE7-9DB67CB6260D}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 EndGlobal
