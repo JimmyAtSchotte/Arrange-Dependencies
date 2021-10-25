@@ -11,14 +11,6 @@
     <Version>1.4.0</Version>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Moq" Version="4.13.0" />

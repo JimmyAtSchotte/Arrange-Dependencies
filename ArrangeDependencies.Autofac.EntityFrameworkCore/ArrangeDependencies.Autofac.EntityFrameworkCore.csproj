@@ -12,15 +12,7 @@
     <FileVersion>1.1.1.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.EntityFrameworkCore\ArrangeDependencies.Autofac.EntityFrameworkCore.xml</DocumentationFile>
-  </PropertyGroup> 
-  
-  <ItemGroup>
+   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />

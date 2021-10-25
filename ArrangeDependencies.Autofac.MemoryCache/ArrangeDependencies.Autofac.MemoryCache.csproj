@@ -10,14 +10,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-    <DocumentationFile>D:\Projekt\Arrange-Dependencies\ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
