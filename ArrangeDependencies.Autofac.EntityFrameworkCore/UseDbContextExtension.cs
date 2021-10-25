@@ -1,4 +1,5 @@
-﻿using ArrangeDependencies.Autofac.Extensions;
+﻿using System;
+using ArrangeDependencies.Autofac.Extensions;
 using ArrangeDependencies.Core.Interfaces;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
@@ -39,15 +40,15 @@ namespace ArrangeDependencies.Autofac.EntityFrameworkCore
         {
             if (arrangeBuilder.IsTypeCached<TContext>(out var result))
                 return result;
+            
+            var dbName = Guid.NewGuid().ToString();
+            var rootProvider = new ServiceCollection()
+                .AddDbContext<TContext>(o => o.UseInMemoryDatabase(dbName))
+                .BuildServiceProvider();
 
-            var root = new InMemoryDatabaseRoot();
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddDbContext<TContext>(config => config.UseInMemoryDatabase(arrangeBuilder.GetHashCode().ToString(), root)
-                .ConfigureWarnings(warnings => warnings.Ignore(CoreEventId.ManyServiceProvidersCreatedWarning)));
-
-            arrangeBuilder.UseContainerBuilder((c) => c.Populate(serviceCollection));
-
-            var db = serviceCollection.BuildServiceProvider().GetService<TContext>();
+            var db = rootProvider.GetService<TContext>();
+            
+            arrangeBuilder.UseContainerBuilder((c) => c.Register(s => db));
             arrangeBuilder.AddTypeToCache(db);
 
             return db;
