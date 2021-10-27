@@ -46,6 +46,25 @@ namespace ArrangeDependencies.Autofac.Test
             Assert.AreEqual(content, result);
         }
         
+        [TestCase("TEST")]
+        [TestCase("Hello world")]
+        public async Task NamedClient(string content)
+        {
+            var clientName = "Test";
+            var uri = new Uri("https://localhost/");
+            var arrange = Arrange.Dependencies<IHttpClientService, HttpClientService>(dependecies =>
+            {
+                dependecies.UseHttpClientFactory(clientName, HttpClientConfig.Create(uri, content));
+            });
+
+            var httpClientService = arrange.Resolve<IHttpClientService>();
+            var client = httpClientService.CreateClient(clientName);
+
+            var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri));
+            var result = await response.Content.ReadAsStringAsync();
+            Assert.AreEqual(content, result);
+        }
+        
         [TestCase("https://localhost/")]
         [TestCase("https://google.com/")]
         public async Task ResponsePerUri(string url)

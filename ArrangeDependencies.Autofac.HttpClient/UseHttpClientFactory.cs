@@ -27,16 +27,29 @@ namespace ArrangeDependencies.Autofac.HttpClient
 
             var handler = CreateHandlerMock(configs);
             
-            AddHttpClientFactory(arrangeBuilder, handler);
+            AddHttpClientFactory(arrangeBuilder, string.Empty, handler);
 
             return arrangeBuilder;
         }
+        
+        public static IArrangeBuilder<ContainerBuilder> UseHttpClientFactory(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName, params HttpClientConfig[] configs)
+        {
+            if (!(arrangeBuilder is ArrangeBuilder builder)) 
+                return arrangeBuilder;
 
-        private static void AddHttpClientFactory(IArrangeBuilder<ContainerBuilder> arrangeBuilder, Mock<HttpMessageHandler> handlerMock)
+            var handler = CreateHandlerMock(configs);
+            
+            AddHttpClientFactory(arrangeBuilder, clientName, handler);
+
+            return arrangeBuilder;
+        }
+        
+
+        private static void AddHttpClientFactory(IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName, Mock<HttpMessageHandler> handlerMock)
         {
             arrangeBuilder.UseMock<IHttpClientFactory>(mock =>
             {
-                mock.Setup(x => x.CreateClient(string.Empty))
+                mock.Setup(x => x.CreateClient(clientName))
                     .Returns(new System.Net.Http.HttpClient(handlerMock.Object));
             });
         }
