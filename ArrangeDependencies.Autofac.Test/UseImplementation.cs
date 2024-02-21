@@ -6,60 +6,59 @@ using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    [TestFixture]
-    public class UseImplementation
-    {
-        [Test]
-        public void ShouldResolveUseImplementation()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseImplementation<IUserService, UserService>();
-            });
+	public class UseImplementation
+	{
+		[Test]
+		public void ShouldResolveUseImplementation()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseImplementation<IUserService, UserService>();
+			});
 
-            var userService = arrange.Resolve<IUserService>();
+			var userService = arrange.Resolve<IUserService>();
 
-            Assert.IsInstanceOf<UserService>(userService);
-        }
-        
-        [Test]
-        public void ShouldResolveUseImplementationWhenConstructed()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseImplementation<IUserFactory, AdminUserFactory>(new AdminUserFactory());
-            });
+			Assert.That(userService, Is.InstanceOf<UserService>());
+		}
 
-            var userService = arrange.Resolve<IUserFactory>();
+		[Test]
+		public void ShouldResolveUseImplementationWhenConstructed()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseImplementation<IUserFactory, AdminUserFactory>(new AdminUserFactory());
+			});
 
-            Assert.IsInstanceOf<AdminUserFactory>(userService);
-        }
+			var userService = arrange.Resolve<IUserFactory>();
 
-        [Test]
-        public void ShouldResolveMultipleImplementations()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseImplementation<IUserFactory, AdminUserFactory>();
-                dependencies.UseImplementation<IUserFactory, BasicUserFactory>();
-            });
+			Assert.That(userService, Is.InstanceOf<AdminUserFactory>());
+		}
 
-            var providers = arrange.Resolve<IUserFactory[]>();
+		[Test]
+		public void ShouldResolveMultipleImplementations()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseImplementation<IUserFactory, AdminUserFactory>();
+				dependencies.UseImplementation<IUserFactory, BasicUserFactory>();
+			});
 
-            Assert.AreEqual(2, providers.Length);
-        }
+			var providers = arrange.Resolve<IUserFactory[]>();
 
-        [Test]
-        public void ShouldResolveMultipleImplementationsFromAssembly()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseImplementations<IUserFactory>(typeof(IUserFactory).Assembly);
-            });
+			Assert.That(providers.Length, Is.EqualTo(2));
+		}
 
-            var providers = arrange.Resolve<IUserFactory[]>();
+		[Test]
+		public void ShouldResolveMultipleImplementationsFromAssembly()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseImplementations<IUserFactory>(typeof(IUserFactory).Assembly);
+			});
 
-            Assert.AreEqual(2, providers.Length);
-        }
-    }
+			var providers = arrange.Resolve<IUserFactory[]>();
+
+			Assert.That(providers.Length, Is.EqualTo(2));
+		}
+	}
 }

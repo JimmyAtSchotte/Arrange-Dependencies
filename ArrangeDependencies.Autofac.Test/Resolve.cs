@@ -4,26 +4,25 @@ using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    [TestFixture]
-    public class Resolve
-    {       
-        [Test]
-        public void ShouldAutoResolveMissingDependeciesWithMocks()
-        {
-            var arrange = Arrange.Dependencies<IUserService, UserService>();
+	public class Resolve
+	{
+		[Test]
+		public void ShouldAutoResolveMissingDependenciesWithMocks()
+		{
+			var arrange = Arrange.Dependencies<IUserService, UserService>();
 
-            var userService = arrange.Resolve<IUserService>();
+			var userService = arrange.Resolve<IUserService>();
 
-            Assert.IsInstanceOf<UserService>(userService);
-        }
+			Assert.That(userService, Is.InstanceOf<UserService>());
+		}
 
-        [Test]
-        public void ShouldAutoResolveLogging()
-        {
-            var arrange = Arrange.Dependencies<IUserService, UserService>();
+		[Test]
+		public void ShouldAutoResolveLogging()
+		{
+			var arrange = Arrange.Dependencies<IUserService, UserService>();
 
-            var userService = arrange.Resolve<IUserService>();
-            userService.Log();
-        }
-    }
+			var userService = arrange.Resolve<IUserService>();
+			userService.Log();
+		}
+	}
 }

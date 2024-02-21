@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jimmy Mattsson</Authors>
         <RepositoryType>GitHub</RepositoryType>
@@ -19,9 +19,9 @@
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="4.9.4" />
-      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Http" Version="3.0.0" />
-      <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
 </Project>
