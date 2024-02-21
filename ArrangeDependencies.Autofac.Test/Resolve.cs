@@ -17,6 +17,16 @@ namespace ArrangeDependencies.Autofac.Test
 		}
 
 		[Test]
+		public void ShouldAutoResolveMissingDependenciesWithMocksWithoutInterface()
+		{
+			var arrange = Arrange.Dependencies<UserService>();
+
+			var userService = arrange.Resolve<UserService>();
+
+			Assert.That(userService, Is.InstanceOf<UserService>());
+		}
+
+		[Test]
 		public void ShouldAutoResolveLogging()
 		{
 			var arrange = Arrange.Dependencies<IUserService, UserService>();
