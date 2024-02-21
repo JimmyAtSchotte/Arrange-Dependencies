@@ -1,10 +1,10 @@
 ﻿using ArrangeDependencies.Autofac.HttpClient;
 using ArrangeDependencies.Autofac.Test.Basis.Services;
-using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ArrangeDependencies.Autofac.Test
@@ -96,7 +96,7 @@ namespace ArrangeDependencies.Autofac.Test
 			var client = httpClientService.CreateClient();
 
 			var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri));
-			var result = JsonConvert.DeserializeObject<TestResponse>(await response.Content.ReadAsStringAsync());
+			var result = JsonSerializer.Deserialize<TestResponse>(await response.Content.ReadAsStringAsync());
 			Assert.That(result.Text, Is.EqualTo(testResponse.Text));
 		}
 
@@ -115,7 +115,7 @@ namespace ArrangeDependencies.Autofac.Test
 			var client = httpClientService.CreateClient();
 
 			var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri));
-			var result = JsonConvert.DeserializeObject<TestResponse>(await response.Content.ReadAsStringAsync());
+			var result = JsonSerializer.Deserialize<TestResponse>(await response.Content.ReadAsStringAsync());
 			Assert.That(result.Text, Is.EqualTo(testResponse.Text));
 		}
 

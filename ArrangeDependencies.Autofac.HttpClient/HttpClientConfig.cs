@@ -2,8 +2,8 @@
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Text.Json;
 using Moq.Protected;
-using Newtonsoft.Json;
 
 namespace ArrangeDependencies.Autofac.HttpClient
 {
@@ -32,12 +32,12 @@ namespace ArrangeDependencies.Autofac.HttpClient
 
 		public static HttpClientConfig Create<T>(Uri uri, T content, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
 		{
-			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => request.RequestUri == uri), JsonConvert.SerializeObject(content), httpStatusCode);
+			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => request.RequestUri == uri), JsonSerializer.Serialize(content), httpStatusCode);
 		}
 
 		public static HttpClientConfig Create<T>(Func<HttpRequestMessage, bool> expression, T content, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
 		{
-			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => expression.Invoke(request)), JsonConvert.SerializeObject(content), httpStatusCode);
+			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => expression.Invoke(request)), JsonSerializer.Serialize(content), httpStatusCode);
 		}
 	}
 }
