@@ -21,6 +21,6 @@ jobs:
       - name: Pack
         run: dotnet pack ArrangeDependencies.Autofac.EntityFrameworkCore --configuration Release /p:Version=${{ github.event.inputs.version }} --no-build --output .
       - name: Push
-        run: dotnet nuget push ArrangeDependencies.Autofac.EntityFrameworkCore.${{ github.event.inputs.version }}.nupkg --source https://nuget.pkg.github.com/acraven/index.json --api-key ${NUGET_APIKEY}
+        run: dotnet nuget push ArrangeDependencies.Autofac.EntityFrameworkCore.${{ github.event.inputs.version }}.nupkg --source https://api.nuget.org/v3/index.json --api-key ${NUGET_APIKEY}
         env:
           NUGET_APIKEY: ${{ secrets.NUGET_APIKEY }}
