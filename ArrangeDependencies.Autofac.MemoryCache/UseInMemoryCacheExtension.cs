@@ -1,43 +1,41 @@
 ﻿using ArrangeDependencies.Autofac.Extensions;
 using ArrangeDependencies.Core.Interfaces;
 using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace ArrangeDependencies.Autofac.MemoryCache
 {
-    public static class UseMemoryCacheExtension
-    {
-        public static IArrangeBuilder<ContainerBuilder> UseMemoryCache(this IArrangeBuilder<ContainerBuilder> arrangeBuilder)
-        {
-            AddMemoryCache(arrangeBuilder as ArrangeBuilder);
+	public static class UseMemoryCacheExtension
+	{
+		public static IArrangeBuilder<ContainerBuilder> UseMemoryCache(this IArrangeBuilder<ContainerBuilder> arrangeBuilder)
+		{
+			AddMemoryCache(arrangeBuilder as ArrangeBuilder);
 
-            return arrangeBuilder;
-        }
+			return arrangeBuilder;
+		}
 
-        public static IArrangeBuilder<ContainerBuilder> UseMemoryCache<T>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, object key, T value)
-        {
-            var memoryCache = AddMemoryCache(arrangeBuilder as ArrangeBuilder);
-            memoryCache.Set(key, value);
+		public static IArrangeBuilder<ContainerBuilder> UseMemoryCache<T>(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, object key, T value)
+		{
+			var memoryCache = AddMemoryCache(arrangeBuilder as ArrangeBuilder);
+			memoryCache.Set(key, value);
 
-            return arrangeBuilder;
-        }
-        
-        private static IMemoryCache AddMemoryCache(ArrangeBuilder arrangeBuilder)
-        {
-            if (arrangeBuilder.IsTypeCached<IMemoryCache>(out var result))
-                return result;
+			return arrangeBuilder;
+		}
 
-            var serviceCollection = new ServiceCollection();
-            serviceCollection.AddMemoryCache();
-            var cache = serviceCollection.BuildServiceProvider().GetService<IMemoryCache>();          
+		private static IMemoryCache AddMemoryCache(ArrangeBuilder arrangeBuilder)
+		{
+			if (arrangeBuilder.IsTypeCached<IMemoryCache>(out var result))
+				return result;
 
-            arrangeBuilder.UseContainerBuilder((c) => c.Register(t => cache).As<IMemoryCache>());
-            arrangeBuilder.AddTypeToCache(cache);
+			var serviceCollection = new ServiceCollection();
+			serviceCollection.AddMemoryCache();
+			var cache = serviceCollection.BuildServiceProvider().GetService<IMemoryCache>();
 
-            return cache;
-        }
-    }
+			arrangeBuilder.UseContainerBuilder((c) => c.Register(t => cache).As<IMemoryCache>());
+			arrangeBuilder.AddTypeToCache(cache);
+
+			return cache;
+		}
+	}
 }

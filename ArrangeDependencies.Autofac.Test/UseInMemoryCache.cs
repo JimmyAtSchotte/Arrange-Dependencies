@@ -8,39 +8,37 @@ using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    public class UseMemoryCache
-    {
-        [Test]
-        public void ShouldResolveClassWithInMemoryCacheDependency()
-        {
-            var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
-            {
-                dependencies.UseDbContext<TestDbContext>();
-            });
+	public class UseMemoryCache
+	{
+		[Test]
+		public void ShouldResolveClassWithInMemoryCacheDependency()
+		{
+			var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
+			{
+				dependencies.UseDbContext<TestDbContext>();
+			});
 
-            var userRepository = arrange.Resolve<IUserRepository>();
+			var userRepository = arrange.Resolve<IUserRepository>();
 
-            Assert.IsInstanceOf<UserRepository>(userRepository);
-        }
+			Assert.That(userRepository, Is.InstanceOf<UserRepository>());
+		}
 
-        [Test]
-        public void ShouldReturnValueInCache()
-        {
-            var user = new User();
-            user.SetName("Test");
+		[Test]
+		public void ShouldReturnValueInCache()
+		{
+			var user = new User();
+			user.SetName("Test");
 
-            var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
-            {
-                dependencies.UseDbContext<TestDbContext>();
-                dependencies.UseMemoryCache("Test", user);
-            });
+			var arrange = Arrange.Dependencies<IUserRepository, UserRepository>(dependencies =>
+			{
+				dependencies.UseDbContext<TestDbContext>();
+				dependencies.UseMemoryCache("Test", user);
+			});
 
-            var userRepository = arrange.Resolve<IUserRepository>();
-            var result = userRepository.GetByName("Test");
+			var userRepository = arrange.Resolve<IUserRepository>();
+			var result = userRepository.GetByName("Test");
 
-            Assert.AreEqual(user.Name, result?.Name);
-
-        }
-
-    }
+			Assert.That(result?.Name, Is.EqualTo(user.Name));
+		}
+	}
 }

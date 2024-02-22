@@ -4,35 +4,33 @@ using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    [TestFixture]
-    public class UseDbContext
-    {
-        [Test]
-        public void ShouldUseDbContext()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseDbContext<TestDbContext>();
-            });
+	public class UseDbContext
+	{
+		[Test]
+		public void ShouldUseDbContext()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseDbContext<TestDbContext>();
+			});
 
-            var testContext = arrange.Resolve<TestDbContext>();
+			var testContext = arrange.Resolve<TestDbContext>();
 
-            Assert.IsInstanceOf<TestDbContext>(testContext);
-        }
+			Assert.That(testContext, Is.InstanceOf<TestDbContext>());
+		}
 
-        [Test]
-        public void ShouldNotRegisterDbContextTwice()
-        {
-            var arrange = Arrange.Dependencies(dependencies =>
-            {
-                dependencies.UseDbContext<TestDbContext>();
-                dependencies.UseDbContext<TestDbContext>();
-            });
+		[Test]
+		public void ShouldNotRegisterDbContextTwice()
+		{
+			var arrange = Arrange.Dependencies(dependencies =>
+			{
+				dependencies.UseDbContext<TestDbContext>();
+				dependencies.UseDbContext<TestDbContext>();
+			});
 
-            var testContexts = arrange.Resolve<TestDbContext[]>();
+			var testContexts = arrange.Resolve<TestDbContext[]>();
 
-            Assert.AreEqual(1, testContexts.Length);
-        }
-
-    }
+			Assert.That(testContexts.Length, Is.EqualTo(1));
+		}
+	}
 }

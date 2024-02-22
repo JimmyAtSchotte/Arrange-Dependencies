@@ -7,41 +7,38 @@ using NUnit.Framework;
 
 namespace ArrangeDependencies.Autofac.Test
 {
-    [TestFixture]
-    public class UseLogging
-    {
-        [Test]
-        public void DependencyOnLoggerShouldVerifyLogError()
-        {
-            Mock<ILogger<LoggingService>> logger = null;
+	public class UseLogging
+	{
+		[Test]
+		public void DependencyOnLoggerShouldVerifyLogError()
+		{
+			Mock<ILogger<LoggingService>> logger = null;
 
-            var arrange = Arrange.Dependencies<ILoggingService, LoggingService>(dependencies =>
-            {
-                dependencies.UseLogger(out logger);
-            });
+			var arrange = Arrange.Dependencies<ILoggingService, LoggingService>(dependencies =>
+			{
+				dependencies.UseLogger(out logger);
+			});
 
-            var loggingService = arrange.Resolve<ILoggingService>();
-            loggingService.LogError();
+			var loggingService = arrange.Resolve<ILoggingService>();
+			loggingService.LogError();
 
-            logger.Verify(LogLevel.Error, Times.Once());
+			logger.Verify(LogLevel.Error, Times.Once());
+		}
 
-        }
+		[Test]
+		public void DependencyOnLoggerFactoryShouldVerifyLogError()
+		{
+			Mock<ILogger<LoggingService>> logger = null;
 
-        [Test]
-        public void DependencyOnLoggerFactoryShouldVerifyLogError()
-        {
-            Mock<ILogger<LoggingService>> logger = null;
+			var arrange = Arrange.Dependencies<ILoggingService, LoggingFactoryService>(dependencies =>
+			{
+				dependencies.UseLogger(out logger);
+			});
 
-            var arrange = Arrange.Dependencies<ILoggingService, LoggingFactoryService>(dependencies =>
-            {
-                dependencies.UseLogger(out logger);
-            });
+			var loggingService = arrange.Resolve<ILoggingService>();
+			loggingService.LogError();
 
-            var loggingService = arrange.Resolve<ILoggingService>();
-            loggingService.LogError();
-
-            logger.Verify(LogLevel.Error, Times.Once());
-
-        }
-    }
+			logger.Verify(LogLevel.Error, Times.Once());
+		}
+	}
 }
