@@ -154,6 +154,27 @@ namespace ArrangeDependencies.Autofac.Test
 			var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri));
 			Assert.That(response.StatusCode, Is.EqualTo(statusCode));
 		}
+		
+		
+		
+		[Test]
+		public async Task UsingBaseAddressOfHttpClient()
+		{
+			var content = "Test response string";
+			var baseUri = new Uri("https://localhost/");
+			var uri = new Uri(baseUri, "path");
+			var arrange = Arrange.Dependencies<IHttpClientService, HttpClientService>(dependencies =>
+			{
+				dependencies.UseHttpClientFactory(client => client.BaseAddress = baseUri, HttpClientConfig.Create(message => message.RequestUri == uri, content));
+			});
+
+			var httpClientService = arrange.Resolve<IHttpClientService>();
+			var client = httpClientService.CreateClient();
+
+			var response = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, "path"));
+			var result = await response.Content.ReadAsStringAsync();
+			Assert.That(result, Is.EqualTo(content));
+		}
 
 		public class TestResponse
 		{

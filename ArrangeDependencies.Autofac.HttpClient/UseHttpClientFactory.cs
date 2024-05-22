@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -24,6 +25,18 @@ namespace ArrangeDependencies.Autofac.HttpClient
 
 			return arrangeBuilder;
 		}
+		
+		public static IArrangeBuilder<ContainerBuilder> UseHttpClientFactory(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, Action<System.Net.Http.HttpClient> httpClientOptions, params HttpClientConfig[] configs)
+		{
+			if (arrangeBuilder is not ArrangeBuilder)
+				return arrangeBuilder;
+
+			var handler = CreateHandlerMock(configs);
+
+			AddHttpClientFactory(arrangeBuilder, string.Empty, handler, httpClientOptions);
+
+			return arrangeBuilder;
+		}
 
 		public static IArrangeBuilder<ContainerBuilder> UseHttpClientFactory(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName, params HttpClientConfig[] configs)
 		{
@@ -36,13 +49,28 @@ namespace ArrangeDependencies.Autofac.HttpClient
 
 			return arrangeBuilder;
 		}
-
-		private static void AddHttpClientFactory(IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName, Mock<HttpMessageHandler> handlerMock)
+		
+		public static IArrangeBuilder<ContainerBuilder> UseHttpClientFactory(this IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName, Action<System.Net.Http.HttpClient> httpClientOptions, params HttpClientConfig[] configs)
 		{
+			if (arrangeBuilder is not ArrangeBuilder)
+				return arrangeBuilder;
+
+			var handler = CreateHandlerMock(configs);
+
+			AddHttpClientFactory(arrangeBuilder, clientName, handler, httpClientOptions);
+
+			return arrangeBuilder;
+		}
+
+		private static void AddHttpClientFactory(IArrangeBuilder<ContainerBuilder> arrangeBuilder, string clientName,  Mock<HttpMessageHandler> handlerMock, Action<System.Net.Http.HttpClient> clientOptions = null)
+		{
+			var client = new System.Net.Http.HttpClient(handlerMock.Object);
+			clientOptions?.Invoke(client);
+			
 			arrangeBuilder.UseMock<IHttpClientFactory>(mock =>
 			{
 				mock.Setup(x => x.CreateClient(clientName))
-					.Returns(new System.Net.Http.HttpClient(handlerMock.Object));
+					.Returns(client);
 			});
 		}
 
