@@ -1,14 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-        <Version>3.0.0.0</Version>
-
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <Version>3.0.0.0</Version>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Allure.NUnit" Version="2.11.0" />
+    <PackageReference Include="ArrangeDependencies.Autofac" Version="6.0.0" />
+    <PackageReference Include="ArrangeDependencies.Core" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
@@ -21,8 +22,6 @@
     <ProjectReference Include="..\ArrangeDependencies.Autofac.HttpClient\ArrangeDependencies.Autofac.HttpClient.csproj" />
     <ProjectReference Include="..\ArrangeDependencies.Autofac.Logger\ArrangeDependencies.Autofac.Logger.csproj" />
     <ProjectReference Include="..\ArrangeDependencies.Autofac.MemoryCache\ArrangeDependencies.Autofac.MemoryCache.csproj" />
-    <ProjectReference Include="..\ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.csproj" />
-    <ProjectReference Include="..\ArrangeDependencies.Core\ArrangeDependencies.Core.csproj" />
   </ItemGroup>
 
 </Project>

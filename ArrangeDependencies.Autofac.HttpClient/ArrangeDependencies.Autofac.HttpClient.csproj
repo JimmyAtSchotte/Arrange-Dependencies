@@ -1,22 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jimmy Mattsson</Authors>
         <RepositoryType>GitHub</RepositoryType>
         <RepositoryUrl>https://github.com/JimmyAtSchotte/Arrange-Dependencies</RepositoryUrl>
         <Description>Arrange your dependencies for your test scope. Extension to use HttpClient</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Version>3.0.0.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ArrangeDependencies.Autofac\ArrangeDependencies.Autofac.csproj" />
-      <ProjectReference Include="..\ArrangeDependencies.Core\ArrangeDependencies.Core.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="ArrangeDependencies.Autofac" Version="6.0.0" />
+      <PackageReference Include="ArrangeDependencies.Core" Version="6.0.0" />
       <PackageReference Include="Autofac" Version="8.0.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
