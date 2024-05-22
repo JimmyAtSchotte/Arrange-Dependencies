@@ -62,11 +62,7 @@ namespace ArrangeDependencies.Autofac.HttpClient
 			{
 				handlerMock.Protected()
 					.Setup<Task<HttpResponseMessage>>("SendAsync", config.Expression, ItExpr.IsAny<CancellationToken>())
-					.ReturnsAsync(new HttpResponseMessage
-					{
-						StatusCode = config.HttpStatusCode,
-						Content = new StringContent(config.Content),
-					})
+					.ReturnsAsync(config.HttpResponseMessage)
 					.Verifiable();
 			}
 

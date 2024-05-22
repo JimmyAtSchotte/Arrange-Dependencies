@@ -9,15 +9,19 @@ namespace ArrangeDependencies.Autofac.HttpClient
 {
 	public class HttpClientConfig
 	{
-		public Expression Expression { get; }
-		public string Content { get; }
-		public HttpStatusCode HttpStatusCode { get; }
+		internal Expression Expression { get; }
+		
+		internal HttpResponseMessage HttpResponseMessage { get; }
+	
 
 		private HttpClientConfig(Expression expression, string content, HttpStatusCode httpStatusCode)
 		{
 			Expression = expression;
-			Content = content;
-			HttpStatusCode = httpStatusCode;
+			HttpResponseMessage = new HttpResponseMessage
+			{
+				StatusCode = httpStatusCode,
+				Content = new StringContent(content),
+			};
 		}
 
 		public static HttpClientConfig Create(Uri uri, string content, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
