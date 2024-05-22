@@ -23,6 +23,12 @@ namespace ArrangeDependencies.Autofac.HttpClient
 				Content = new StringContent(content),
 			};
 		}
+		
+		private HttpClientConfig(Expression expression, HttpResponseMessage responseMessage)
+		{
+			Expression = expression;
+			HttpResponseMessage = responseMessage;
+		}
 
 		public static HttpClientConfig Create(Uri uri, string content, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
 		{
@@ -42,6 +48,23 @@ namespace ArrangeDependencies.Autofac.HttpClient
 		public static HttpClientConfig Create<T>(Func<HttpRequestMessage, bool> expression, T content, HttpStatusCode httpStatusCode = HttpStatusCode.OK)
 		{
 			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => expression.Invoke(request)), JsonSerializer.Serialize(content), httpStatusCode);
+		}
+		
+		
+		public static HttpClientConfig Create(Uri uri, Action<HttpResponseMessage> responseMessageOptions)
+		{
+			var responseMessage = new HttpResponseMessage();
+			responseMessageOptions.Invoke(responseMessage);
+			
+			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => request.RequestUri == uri), responseMessage);
+		}
+		
+		public static HttpClientConfig Create(Func<HttpRequestMessage, bool> expression, Action<HttpResponseMessage> responseMessageOptions)
+		{
+			var responseMessage = new HttpResponseMessage();
+			responseMessageOptions.Invoke(responseMessage);
+			
+			return new HttpClientConfig(ItExpr.Is<HttpRequestMessage>(request => expression.Invoke(request)), responseMessage);
 		}
 	}
 }

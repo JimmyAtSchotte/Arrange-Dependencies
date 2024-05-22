@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -175,6 +176,39 @@ namespace ArrangeDependencies.Autofac.Test
 			var result = await response.Content.ReadAsStringAsync();
 			Assert.That(result, Is.EqualTo(content));
 		}
+		
+		
+		[Test]
+		public async Task ChangeContentType()
+		{
+			var content = "Test response string";
+			var baseUri = new Uri("https://localhost/");
+			var uri1 = new Uri(baseUri, "path1");
+			var uri2 = new Uri(baseUri, "path1");
+			var arrange = Arrange.Dependencies<IHttpClientService, HttpClientService>(dependencies =>
+			{
+				dependencies.UseHttpClientFactory(client => client.BaseAddress = baseUri, 
+				HttpClientConfig.Create(
+					message => message.RequestUri == uri1,
+					response => response.Content = new StringContent(content, Encoding.UTF8, "text/plain"
+					)));
+				
+				HttpClientConfig.Create(
+				uri2,
+				response => response.Content = new StringContent(content, Encoding.UTF8, "text/html"
+				));
+			});
+
+			var httpClientService = arrange.Resolve<IHttpClientService>();
+			var client = httpClientService.CreateClient();
+
+			var response1 = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri1.PathAndQuery));
+			var response2 = await client.SendAsync(new HttpRequestMessage(HttpMethod.Get, uri2.PathAndQuery));
+
+			Assert.That(response1.Content.Headers.ContentType?.MediaType, Is.EqualTo("text/plain"));
+			Assert.That(response2.Content.Headers.ContentType?.MediaType, Is.EqualTo("text/html"));
+		}
+
 
 		public class TestResponse
 		{
