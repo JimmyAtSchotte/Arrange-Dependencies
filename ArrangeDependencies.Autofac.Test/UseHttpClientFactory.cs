@@ -184,18 +184,16 @@ namespace ArrangeDependencies.Autofac.Test
 			var content = "Test response string";
 			var baseUri = new Uri("https://localhost/");
 			var uri1 = new Uri(baseUri, "path1");
-			var uri2 = new Uri(baseUri, "path1");
+			var uri2 = new Uri(baseUri, "path2");
 			var arrange = Arrange.Dependencies<IHttpClientService, HttpClientService>(dependencies =>
 			{
 				dependencies.UseHttpClientFactory(client => client.BaseAddress = baseUri, 
 				HttpClientConfig.Create(
 					message => message.RequestUri == uri1,
-					response => response.Content = new StringContent(content, Encoding.UTF8, "text/plain"
-					)));
-				
+					response => response.Content = new StringContent(content, Encoding.UTF8, "text/plain")),
 				HttpClientConfig.Create(
 				uri2,
-				response => response.Content = new StringContent(content, Encoding.UTF8, "text/html"
+				response => response.Content = new StringContent(content, Encoding.UTF8, "text/html")
 				));
 			});
 
