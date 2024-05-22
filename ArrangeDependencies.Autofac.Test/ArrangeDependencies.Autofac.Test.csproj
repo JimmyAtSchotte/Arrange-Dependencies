@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Allure.NUnit" Version="2.11.0" />
-    <PackageReference Include="ArrangeDependencies.Autofac" Version="6.0.0" />
+    <PackageReference Include="ArrangeDependencies.Autofac" Version="8.0.0" />
     <PackageReference Include="ArrangeDependencies.Core" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
